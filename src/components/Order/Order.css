@@ -1,0 +1,27 @@
+.order-details p{
+    margin: 10px 0;
+}
+.order-details .grand-total{
+    margin: 20px 0;
+}
+.btn{
+    width: 100%;
+    font-size: 16px;
+    height: 45px;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.icon{
+    margin-left: 10px;
+}
+.clear-cart{
+    margin-bottom: 10px;
+    background: #FF3030;
+}
+.review-order{
+    background: #FF9900;
+}
