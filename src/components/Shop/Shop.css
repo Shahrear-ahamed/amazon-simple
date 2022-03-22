@@ -11,6 +11,9 @@
 }
 .order-summary{
     background-color: #ff99004d;
+    position: sticky;
+    top: 0%;
+    right: 0%;
     height: 100vh;
     padding: 40px 10px;
 }
