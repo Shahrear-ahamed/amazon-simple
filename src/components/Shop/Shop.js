@@ -28,7 +28,6 @@ const Shop = () => {
         ))}
       </div>
       <div className="order-summary">
-        <h2 className="order-title">Order Summary</h2>
         <Order product={cart}></Order>
       </div>
     </div>

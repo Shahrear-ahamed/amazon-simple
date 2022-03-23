@@ -2,29 +2,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";import React from 'react';
 import './Order.css'
 
-const Order = ({ product }) => {
-  // total price are here
-  const totalPrice= product.reduce((first, second)=>first+second.price, 0);
-  // shipping charge are here
-  let price;
-  if (totalPrice > 0 && totalPrice <= 1000) {
-    price = 150;
-  } else if (totalPrice > 0 && totalPrice <= 2500) {
-    price = 80;
-  } else {
-    price = 0;
+const Order = ({ product }) => {  
+  // set price and shipping charge are add by using for of also can use reduce 
+  let totalPrice = 0;
+  let shipping = 0;
+  for(const cartProduce of product){
+    totalPrice = totalPrice+cartProduce.price;
+    shipping = shipping + cartProduce.shipping;
   }
+  
   // tax section are here
   const taxFloat = (totalPrice * 0.1).toFixed(2);
   const tax = parseFloat(taxFloat);
   // grand total price
-  const grandTotal = totalPrice+price+tax
+  const grandTotal = totalPrice+shipping+tax;
+
+
   return (
     <div>
       <div className="order-details">
+        <h2 className="order-title">Order Summary</h2>
         <p>Selected Items: {product.length}</p>
         <p>Total Price: ${totalPrice}</p>
-        <p>Shipping Charge: ${price}</p>
+        <p>Shipping Charge: ${shipping}</p>
         <p>Tax: ${tax}</p>
         <h3 className="grand-total">Grand Total: ${grandTotal}</h3>
       </div>
