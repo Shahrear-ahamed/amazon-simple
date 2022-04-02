@@ -1,0 +1,10 @@
+.order-details .order-title{
+    text-align: center;
+    margin-top: 50px;
+}
+.order-details p{
+    margin: 25px 0;
+}
+.order-details .grand-total{
+    margin: 20px 0;
+}

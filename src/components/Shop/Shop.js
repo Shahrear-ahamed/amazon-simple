@@ -1,20 +1,30 @@
-import React, { useEffect, useState } from "react";
-import Order from "../Order/Order";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import useCarts from "../../hooks/useCarts";
+import useProducts from "../../hooks/useProducts";
+import { addToDb } from "../../utilities/fakedb";
+import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
 
 const Shop = () => {
-  const [products, setProduces] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [products] = useProducts([]);
+  const [cart, setCart] = useCarts(products);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => setProduces(data));
-  }, []);
   const addCartToClick = (data) => {
-    const newData = [...cart, data];
-    setCart(newData);
+    let newProduct = [];
+    const exist = cart.find(product=> product.id === data.id);
+    if(!exist){
+      data.quantity = 1;
+      newProduct=[...cart,data];
+    }else{
+      const rest = cart.filter(product=> product.id !== data.id)
+      exist.quantity = exist.quantity+1;
+      newProduct=[...rest,exist];
+    }
+    setCart(newProduct);
+    addToDb(data.id);
   };
   return (
     <div className="shop-section">
@@ -28,7 +38,9 @@ const Shop = () => {
         ))}
       </div>
       <div className="order-summary">
-        <Order product={cart}></Order>
+        <Cart product={cart}>
+          <button onClick={()=>navigate("/orders")}>Order Now</button>
+        </Cart>
       </div>
     </div>
   );
