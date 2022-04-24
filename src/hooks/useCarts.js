@@ -7,7 +7,7 @@ const useCarts = (products) => {
     const storedCart = loadFromLocalStorage();
     const localProduct = [];
     for (const id in storedCart) {
-      const singleProduct = products.find((product) => product.id === id);
+      const singleProduct = products.find((product) => product._id === id);
       if (singleProduct) {
         const quantity = storedCart[id];
         singleProduct.quantity = quantity;

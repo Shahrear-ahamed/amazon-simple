@@ -24,7 +24,7 @@ function App() {
           element={
             <RequireAuth>
               <Inventory />
-            </RequireAuth>g
+            </RequireAuth>
           }
         />
         <Route
